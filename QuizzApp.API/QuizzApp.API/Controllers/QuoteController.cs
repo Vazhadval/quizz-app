@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuizzApp.API.Contracts.Request.Dtos;
+using QuizzApp.API.Contracts.Response;
+using QuizzApp.API.Interfaces;
+using QuizzApp.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +16,31 @@ namespace QuizzApp.API.Controllers
     [ApiController]
     public class QuoteController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        private readonly IQuoteService _quoteService;
+        private readonly IMapper _mapper;
+
+        public QuoteController(IQuoteService quoteService, IMapper mapper)
         {
-            return Ok("Hello");
+            _quoteService = quoteService;
+            _mapper = mapper;
         }
+        [HttpPost]
+        public async Task<BaseResponse<QuoteDto>> Create(QuoteDto quote)
+        {
+            return await _quoteService.Create(_mapper.Map<Quote>(quote));
+        }
+
+        [HttpGet]
+        public BaseResponse<IEnumerable<QuoteDto>> Get(int limit = 10)
+        {
+            return _quoteService.Get(limit);
+        }
+
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok("works");
+        }
+
     }
 }
