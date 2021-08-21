@@ -31,16 +31,9 @@ namespace QuizzApp.API.Controllers
         }
 
         [HttpGet]
-        public BaseResponse<IEnumerable<QuoteDto>> Get(int limit = 10)
+        public BaseResponse<IEnumerable<QuoteDto>> Get(int type = 0,int limit = 10 )
         {
-            return _quoteService.Get(limit);
+            return _quoteService.Get(type,limit);
         }
-
-        [HttpGet("test")]
-        public IActionResult Test()
-        {
-            return Ok("works");
-        }
-
     }
 }

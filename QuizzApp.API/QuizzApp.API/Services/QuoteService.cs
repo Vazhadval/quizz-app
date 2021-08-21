@@ -45,11 +45,11 @@ namespace QuizzApp.API.Services
             };
         }
 
-        public  BaseResponse<IEnumerable<QuoteDto>> Get(int limit = 10)
+        public  BaseResponse<IEnumerable<QuoteDto>> Get(int type,int limit = 10)
         {
             return new BaseResponse<IEnumerable<QuoteDto>>
             {
-                Data = _context.Quotes.Take(limit).Select(x => _mapper.Map<QuoteDto>(x)),
+                Data = _context.Quotes.Where(x=>x.Type==type).Take(limit).Select(x => _mapper.Map<QuoteDto>(x)),
                 Success = true,
                 Error = null
             };

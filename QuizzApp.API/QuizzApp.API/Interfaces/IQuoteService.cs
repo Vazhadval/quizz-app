@@ -11,6 +11,6 @@ namespace QuizzApp.API.Interfaces
     public interface IQuoteService
     {
         Task<BaseResponse<QuoteDto>> Create(Quote q);
-        BaseResponse<IEnumerable<QuoteDto>> Get(int limit = 10);
+        BaseResponse<IEnumerable<QuoteDto>> Get( int type,int limit = 10);
     }
 }
