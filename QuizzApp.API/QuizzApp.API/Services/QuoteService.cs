@@ -49,7 +49,7 @@ namespace QuizzApp.API.Services
         {
             return new BaseResponse<IEnumerable<QuoteDto>>
             {
-                Data = _context.Quotes.Where(x=>x.Type==type).Take(limit).Select(x => _mapper.Map<QuoteDto>(x)),
+                Data = _context.Quotes.Where(x=>x.Type==type).OrderBy(r => Guid.NewGuid()).Take(limit).Select(x => _mapper.Map<QuoteDto>(x)),
                 Success = true,
                 Error = null
             };
