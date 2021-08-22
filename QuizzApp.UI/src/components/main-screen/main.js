@@ -15,7 +15,7 @@ export const Main = () => {
     const [isGameStarted, setGameStarted] = useState(false);
 
     const [totalQuotes, setTotalQuotes] = useState(0);
-    const [currentQuoteNumber, setCurrectQuoteNumber] = useState(0);
+    const [currentQuoteNumber, setCurrentQuoteNumber] = useState(0);
 
     const [currentQuote, setCurrentQuote] = useState(null)
 
@@ -34,15 +34,13 @@ export const Main = () => {
                 setCorrectAnswers(correctAnswers + 1);
             }
         } else {
-            console.log(answer);
-            console.log(currentQuote?.realQuoteOwner)
             let isUserCorrect = currentQuote?.realQuoteOwner === answer;
             if (isUserCorrect === true) {
                 setCorrectAnswers(correctAnswers + 1);
             }
         }
 
-        setCurrectQuoteNumber(currentQuoteNumber + 1);
+        setCurrentQuoteNumber(currentQuoteNumber + 1);
         setCurrentQuote(quotes[currentQuoteNumber + 1]);
     }
 
@@ -60,7 +58,7 @@ export const Main = () => {
     const handleEndGame = () => {
         setGameStarted(false);
         setCorrectAnswers(0);
-        setCurrectQuoteNumber(0);
+        setCurrentQuoteNumber(0);
     }
 
 

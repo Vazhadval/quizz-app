@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, createRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './quiz.css';
 import { AppContext } from '../../appContext';
 
@@ -13,10 +13,8 @@ export const Quiz = ({ quoteText, quoteOwner, quoteRandomOwner, quoteOwnerA, quo
 
     const [answers, setAnswers] = useState([]);
 
-    const [checked, setChecked] = useState(true);
 
 
-    const inputRef = createRef();
 
     const handleAnswerClick = (answer) => {
         setUserAnswered(true);
@@ -33,7 +31,7 @@ export const Quiz = ({ quoteText, quoteOwner, quoteRandomOwner, quoteOwnerA, quo
             answers.map((ans, index) => (
                 <div className="ans ml-2 " key={index}>
                     <label className="radio">
-                        <input type="radio" name="answer" onClick={() => handleAnswerClick(ans)} ref={inputRef} />
+                        <input type="radio" name="answer" onClick={() => handleAnswerClick(ans)} />
                         <span>{ans}</span>
                     </label>
                 </div>
